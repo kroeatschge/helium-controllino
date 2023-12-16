@@ -63,6 +63,7 @@ services:
     image: nebraltd/hm-gatewayrs:arm64-5428419
     depends_on:
       - diagnostics
+      - poolparty
     cap_add:
       - SYS_RAWIO
     privileged: true
@@ -77,6 +78,13 @@ services:
       - pktfwdr:/var/pktfwd
       - miner-storage:/var/data
       - nebra:/var/nebra
+
+  poolparty:
+    build:
+      context: https://github.com/joecryptotoo/pool_party.git#main
+    expose:
+      - 9080/tcp
+    restart: unless-stopped
 
   diagnostics:
     image: nebraltd/hm-diag:arm64-6d56740
@@ -118,13 +126,6 @@ services:
       - DBUS_ADDRESS=unix:path=/session/dbus/session_bus_socket
       - FIRMWARE_VERSION=v1.3.0
       - FIRMWARE_SHORT_HASH=c2dd87a
-
-  poolparty:
-    build:
-      context: https://github.com/joecryptotoo/pool_party.git#main
-    expose:
-      - 9080/tcp
-    restart: unless-stopped
 
 volumes:
   miner-storage:
