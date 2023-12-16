@@ -119,6 +119,13 @@ services:
       - FIRMWARE_VERSION=v1.3.0
       - FIRMWARE_SHORT_HASH=c2dd87a
 
+  poolparty:
+    build:
+      context: https://github.com/joecryptotoo/pool_party.git#main
+    expose:
+      - 9080/tcp
+    restart: unless-stopped
+
 volumes:
   miner-storage:
   pktfwdr:
