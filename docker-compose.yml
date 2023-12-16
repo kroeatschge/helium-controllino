@@ -61,6 +61,7 @@ services:
 
   helium-miner:
     image: nebraltd/hm-gatewayrs:arm64-5428419
+    links: poolparty:mainnet-pociot.helium.io
     depends_on:
       - diagnostics
       - poolparty
@@ -83,7 +84,7 @@ services:
     build:
       context: https://github.com/joecryptotoo/pool_party.git#main
     expose:
-      - 9080/tcp
+      - "9080"
     restart: unless-stopped
 
   diagnostics:
