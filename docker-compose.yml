@@ -61,7 +61,8 @@ services:
 
   helium-miner:
     image: nebraltd/hm-gatewayrs:arm64-5428419
-    links: poolparty:mainnet-pociot.helium.io
+    links: 
+    - poolparty:mainnet-pociot.helium.io
     depends_on:
       - diagnostics
       - poolparty
